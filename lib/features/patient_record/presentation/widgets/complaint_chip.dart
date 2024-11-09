@@ -23,9 +23,11 @@ class ComplaintChip extends ConsumerWidget {
             .read(patientRepositoryProvider.notifier)
             .toggleComplaint(complaint.id);
       },
-      backgroundColor: complaint.isSelected ? Colors.green : Colors.blue[100],
+      backgroundColor: complaint.isSelected
+          ? const Color.fromARGB(255, 234, 6, 6)
+          : Colors.blue[100],
       labelStyle: TextStyle(
-        color: complaint.isSelected ? Colors.white : Colors.black,
+        color: complaint.isSelected ? Colors.black : Colors.black,
       ),
     );
   }

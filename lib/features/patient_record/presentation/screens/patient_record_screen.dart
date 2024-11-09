@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:med_cortico/features/patient_record/data/repositories/patient_repository.dart';
 import '../widgets/complaint_chip.dart';
-import '../widgets/nav_button.dart';
-import '../providers/complaint_provider.dart';
+// import '../widgets/nav_button.dart';
+// import '../providers/complaint_provider.dart';
 
 class PatientRecordScreen extends ConsumerWidget {
   const PatientRecordScreen({super.key});
@@ -93,6 +93,7 @@ class PatientRecordScreen extends ConsumerWidget {
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.search),
         hintText: 'Chief Complaints',
+        hintStyle: const TextStyle(color: Colors.black54),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),

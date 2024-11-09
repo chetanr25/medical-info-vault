@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:med_cortico/features/patient_record/presentation/screens/patient_record_screen.dart';
 import 'package:med_cortico/features/patient_record/presentation/widgets/history.dart';
+import 'package:med_cortico/features/patient_record/presentation/widgets/type.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -12,29 +13,63 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {/* Handle navigation */},
         ),
         title: Row(
           children: [
-            TextButton(
-              onPressed: () {},
+            Container(
+              // onPressed: () {},
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: const Text('Past Records',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
-            TextButton(
-              onPressed: () {},
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: const Text('Change Patient',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
+            Spacer(),
+            Text('Name ')
           ],
         ),
-        backgroundColor: Colors.blue,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.lightBlue,
+                Colors.blue[100] ?? Colors.blue,
+              ],
+            ),
+          ),
+        ),
       ),
       body: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Expanded(child: PatientRecordScreen()),
-          const Expanded(child: HistoryWidget()),
+          const Expanded(
+              child: Column(
+            children: [
+              Expanded(child: HistoryWidget()),
+              Expanded(child: TypeWidget()),
+            ],
+          )),
         ],
       ),
     );
