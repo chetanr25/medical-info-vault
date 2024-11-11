@@ -1,16 +1,9 @@
-# med_cortico
+# MedVault - Healthcare Data Management Platform
 
-A new Flutter project.
+A Flutter-based medical records management system designed for secure and efficient healthcare data handling.
 
-## Getting Started
+### Download APK / View on web
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<a href="https://github.com/chetanr25/medical-info-vault/raw/refs/heads/main/assets/apk/app-release.apk">
+<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width=350/>
+</a>
