@@ -44,19 +44,41 @@ class _HistoryWidgetState extends State<HistoryWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('History of Cough:'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('History of Cough:'),
+      // ),
       body: Card(
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          // side: BorderSide(),
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(10),
+            topRight: const Radius.circular(10),
+            bottomLeft: const Radius.circular(0),
+            bottomRight: const Radius.circular(0),
+          ),
+        ),
+        color: Colors.white,
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('History of Cough:'),
+                  TextButton(
+                    child: Text('Back'),
+                    onPressed: () {/* Handle save */},
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                  Text('History of Cough:',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   TextButton(
                     child: Text('Save'),
                     onPressed: () {/* Handle save */},
@@ -67,6 +89,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                   ),
                 ],
               ),
+              Gap(10),
               Text('Duration-'),
               // Grid for duration (you'd implement a proper grid here)
               Container(
@@ -158,24 +181,27 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                   // ),
                 ],
               ),
-              // Type selection
-              // Text('Type-'),
-              Gap(10),
+              const Gap(10),
               Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: TextField(
                       decoration: InputDecoration(
+                        hintStyle: TextStyle(color: Colors.black54),
                         hintText: 'Add note',
                         border: OutlineInputBorder(),
                       ),
                     ),
                   ),
-                  TextButton.icon(
-                    icon: Icon(Icons.add),
-                    label: Text('Add Question'),
+                  const Gap(10),
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.add),
+                    label: const Text('Add Question'),
                     onPressed: () {/* Handle add question */},
-                    style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                    ),
                   ),
                 ],
               ),

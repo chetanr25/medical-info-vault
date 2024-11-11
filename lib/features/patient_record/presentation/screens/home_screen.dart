@@ -42,7 +42,12 @@ class HomeScreen extends ConsumerWidget {
                   style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
             Spacer(),
-            Text('Name ')
+            Text('Naman Singh, M 21'),
+            Spacer(),
+            Image(
+              image: AssetImage('assets/icon.png'),
+              fit: BoxFit.fill,
+            ),
           ],
         ),
         flexibleSpace: Container(
@@ -58,16 +63,18 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
-      body: Row(
+      body: const Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Expanded(child: PatientRecordScreen()),
-          const Expanded(
+          Expanded(child: PatientRecordScreen()),
+          Expanded(
               child: Column(
             children: [
               Expanded(child: HistoryWidget()),
-              Expanded(child: TypeWidget()),
+              SizedBox(
+                child: TypeWidget(),
+              ),
             ],
           )),
         ],

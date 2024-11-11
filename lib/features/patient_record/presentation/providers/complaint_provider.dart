@@ -1,7 +1,4 @@
-// lib/features/patient_record/presentation/providers/complaint_provider.dart
-import 'package:med_cortico/features/patient_record/data/repositories/patient_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../domain/entities/complaint.dart';
 
 part 'complaint_provider.g.dart';
 
@@ -9,7 +6,7 @@ part 'complaint_provider.g.dart';
 class SelectedComplaints extends _$SelectedComplaints {
   @override
   List<String> build() {
-    return ['Cough'];
+    return [];
   }
 
   void toggleComplaint(String complaint) {

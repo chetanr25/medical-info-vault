@@ -1,63 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:med_cortico/features/patient_record/domain/providers/provider.dart';
 
-class TypeWidget extends StatefulWidget {
+class TypeWidget extends ConsumerStatefulWidget {
   const TypeWidget({super.key});
 
   @override
-  State<TypeWidget> createState() => _TypeWidgetState();
+  ConsumerState<TypeWidget> createState() => _TypeWidgetState();
 }
 
-class _TypeWidgetState extends State<TypeWidget> {
+class _TypeWidgetState extends ConsumerState<TypeWidget> {
   Widget _buildTypeChip(String label, bool isSelected) {
-    return FilterChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: (bool selected) {
-        setState(() {
-          // Handle selection
-        });
+    return GestureDetector(
+      onTap: () {
+        ref.read(toggleSelectedTypesProvider)(label);
       },
-      backgroundColor: isSelected ? Colors.blue : Colors.white12,
-      labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black),
+      child: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: Chip(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+            side: const BorderSide(
+              color: Colors.blue,
+            ),
+          ),
+          label: Text(label),
+
+          // selected: isSelected,
+          deleteIcon: isSelected
+              ? const Icon(
+                  Icons.check,
+                  color: Colors.white,
+                )
+              : const Text(''),
+          onDeleted: () {
+            ref.read(toggleSelectedTypesProvider)(label);
+            // ref.read(selectedTypesProvider.notifier).state.contains(label)
+            //     ? ref.read(selectedTypesProvider.notifier).remove(label)
+            //     : ref.read(selectedTypesProvider.notifier).add(label);
+          },
+          backgroundColor: isSelected ? Colors.blue : Colors.white,
+          labelStyle:
+              TextStyle(color: isSelected ? Colors.white : Colors.black),
+        ),
+      ),
     );
   }
+
+  List types = ['Dry Cough', 'Whopping Cough', 'Productive Cough'];
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(
+        // side: const BorderSide(),
+
+        borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(0),
+            topRight: const Radius.circular(0),
+            bottomLeft: const Radius.circular(10),
+            bottomRight: const Radius.circular(10)),
+      ),
+      color: Colors.white,
       child: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Row(
+        constraints: const BoxConstraints(
+          minHeight: 100,
+          maxHeight: 200,
+        ),
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Wrap(
-              runSpacing: 8,
-              alignment: WrapAlignment.start,
-              spacing: 8,
               children: [
-                Text('Type -', style: TextStyle(fontWeight: FontWeight.bold)),
-                _buildTypeChip('Dry Cough', true),
-                _buildTypeChip('Whopping Cough', false),
-                _buildTypeChip('Productive Cough', false),
-                SizedBox(height: 18),
+                const Text('Type - ',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                for (var type in types)
+                  _buildTypeChip(
+                      type, ref.watch(selectedTypesProvider).contains(type)),
               ],
             ),
-            Expanded(
+            const Expanded(
               child: Row(
                 children: [
                   Text('No. of Bouts-'),
+                  // Gap(1),
                   Expanded(
-                    child: TextField(),
+                    child: Padding(
+                      padding: EdgeInsets.all(1.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
             )
           ],
         ),
-        // Note section
-
-        //   ],)
-        //   ),
-        // ));
       ),
     );
   }
